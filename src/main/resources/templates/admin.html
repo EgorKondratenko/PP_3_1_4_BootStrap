@@ -228,7 +228,7 @@
                       <select class="form-control" size="2" id="roles" name="roles" multiple th:field="*{roles}">
                         <option th:each="role : ${allRoles}"
                                 th:text="${role.toString()}"
-                                th:value="${role.getId()}"
+                                th:value="${role.id}"
                         ></option>
                       </select>
                     </p>
