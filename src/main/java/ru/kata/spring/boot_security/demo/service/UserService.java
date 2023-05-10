@@ -4,11 +4,11 @@ import ru.kata.spring.boot_security.demo.model.User;
 import java.util.List;
 
 public interface UserService{
-    void add(User user);
+    void save(User user);
     List<User> listUsers();
-    User getUserById(int id);
+    User getUserById(Integer id);
     void update(User updatedUser);
-    void delete(int id);
+    void delete(Integer id);
     User findUsersByEmail(String username);
-    void updateUser(User updateduser, int id);
+    void updateUser(User updateduser, Integer id);
 }
