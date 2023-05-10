@@ -8,7 +8,6 @@ import ru.kata.spring.boot_security.demo.model.Role;
 import ru.kata.spring.boot_security.demo.model.User;
 import ru.kata.spring.boot_security.demo.service.RoleService;
 import ru.kata.spring.boot_security.demo.service.UserService;
-
 import java.security.Principal;
 import java.util.HashSet;
 import java.util.Set;
@@ -31,6 +30,7 @@ public class AdminController {
         model.addAttribute("allRoles", roles);
         User user = userService.findUsersByEmail(principal.getName());
         model.addAttribute("usera", user);
+        model.addAttribute("roles", roleService.getAllRoles());
         model.addAttribute("users", userService.listUsers());
         return "admin";
     }
@@ -42,17 +42,18 @@ public class AdminController {
         return "/createUser";
     }
     @PostMapping()
-    public String createUser(@ModelAttribute("user") User user) {
-        userService.add(user);
+    public String createUser(@ModelAttribute("user") User user, @ModelAttribute("roles") Role role) {
+        roleService.saveRole(role);
+        userService.save(user);
         return "redirect:/admin";
     }
     @PatchMapping(value = "/update/{id}")
-    public String updateUser(@ModelAttribute("user") User updatedUser, @PathVariable("id") int id) {
-        userService.updateUser(updatedUser, id);
+    public String updateUser(@ModelAttribute("user") User updateUser, @PathVariable("id") Integer id) {
+        userService.updateUser(updateUser, id);
         return "redirect:/admin";
     }
     @DeleteMapping("/{id}")
-    public String delete(@PathVariable("id") int id) {
+    public String delete(@PathVariable("id") Integer id) {
         userService.delete(id);
         return "redirect:/admin";
     }
