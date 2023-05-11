@@ -23,8 +23,7 @@ public class AdminController {
         this.roleService = roleService;
     }
     @GetMapping
-    public String userPage2(Principal principal, Model model) {
-
+    public String adminPage(Principal principal, Model model) {
         model.addAttribute("newUser", new User());
         Set<Role> roles = new HashSet<>(roleService.getAllRoles());
         model.addAttribute("allRoles", roles);
