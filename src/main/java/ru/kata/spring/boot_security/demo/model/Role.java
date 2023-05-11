@@ -34,7 +34,6 @@ public class Role implements GrantedAuthority {
         return getName();
     }
     @Override
-    //что-то вот тут надо подумать
     public String toString() {
         String role = getName();
         if (role.equals("ROLE_ADMIN")) {
